@@ -1,11 +1,12 @@
 package com.paypal.vault.customers;
 
+import com.paypal.base.PayPalBTPage;
 import com.paypal.base.WebPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreateNewCustomerPage extends WebPage {
+public class CreateNewCustomerPage extends PayPalBTPage {
     protected WebDriver driver;
     @FindBy(id = "toggleable_payment_method_present_false")
     protected WebElement woPaymentMethodRadiobutton;

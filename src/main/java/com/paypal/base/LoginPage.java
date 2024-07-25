@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import java.util.Arrays;
 
-public class LoginPage extends WebPage {
+public class LoginPage extends PayPalBTPage {
     @FindBy(id = "login")
     protected WebElement usernameField;
     @FindBy(id = "password")
