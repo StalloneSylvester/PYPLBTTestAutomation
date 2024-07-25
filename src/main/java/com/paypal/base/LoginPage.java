@@ -3,7 +3,6 @@ package com.paypal.base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.Arrays;
 
 public class LoginPage extends WebPage {

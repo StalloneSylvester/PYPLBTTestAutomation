@@ -20,13 +20,12 @@ public class WebPage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
-    public WebElement waitForElementToBeClickable(WebElement element){
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    public void waitForElementToBeClickable(WebElement element){
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public WebElement waitForElementToBeVisible(WebElement element){
-        return wait.until(ExpectedConditions.visibilityOf(element));
-
+    public void waitForElementToBeVisible(WebElement element){
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public void waitForVisibilityOfElements(List<WebElement> webElements) {
