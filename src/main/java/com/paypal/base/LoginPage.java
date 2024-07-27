@@ -20,15 +20,15 @@ public class LoginPage extends PayPalBTPage {
     }
 
     public void doLogin(String username, String password) {
-        pauseBrowser(5);
+        pauseBrowser(2);
         waitForVisibilityOfElements(Arrays.asList(acceptCookiesButton, usernameField, passwordField, loginButton));
-        pauseBrowser(5);
+        pauseBrowser(2);
         acceptCookiesButton.click();
-        pauseBrowser(5);
+        pauseBrowser(2);
         usernameField.sendKeys(username);
-        pauseBrowser(5);
+        pauseBrowser(2);
         passwordField.sendKeys(password);
-        pauseBrowser(5);
+        pauseBrowser(2);
         loginButton.click();
     }
 }
