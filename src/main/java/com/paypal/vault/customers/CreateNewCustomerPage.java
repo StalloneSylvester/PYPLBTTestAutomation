@@ -1,10 +1,10 @@
 package com.paypal.vault.customers;
 
 import com.paypal.base.PayPalBTPage;
-import com.paypal.base.WebPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import java.util.Arrays;
 
 public class CreateNewCustomerPage extends PayPalBTPage {
     protected WebDriver driver;
@@ -16,6 +16,8 @@ public class CreateNewCustomerPage extends PayPalBTPage {
     protected WebElement alertElement;
     @FindBy(css = "div.detail-card_title > h2")
     protected WebElement alertDetail;
+    @FindBy(css = "a.button-secondary")
+    protected WebElement newCustomerButton;
     protected String alertMessage;
 
 
@@ -26,6 +28,8 @@ public class CreateNewCustomerPage extends PayPalBTPage {
     }
 
     public void createNewCustomerWoCustomerDetails() {
+        navigateToCreateNewCustomerPage();
+        waitForVisibilityOfElements(Arrays.asList(woPaymentMethodRadiobutton, createCustomerButton));
         woPaymentMethodRadiobutton.click();
         createCustomerButton.click();
         setAlertMessage();
@@ -39,4 +43,14 @@ public class CreateNewCustomerPage extends PayPalBTPage {
     public String getAlertMessage() {
         return alertMessage;
     }
+
+    private void navigateToCreateNewCustomerPage() {
+        topNavigationBar.goToModule("Vault");
+        pauseBrowser(3);
+        waitForElementToBeClickable(newCustomerButton);
+        newCustomerButton.click();
+        pauseBrowser(2
+        );
+    }
+
 }

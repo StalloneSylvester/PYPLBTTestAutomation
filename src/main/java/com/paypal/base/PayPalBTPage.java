@@ -12,3 +12,4 @@ public class PayPalBTPage extends WebPage {
         topNavigationBar = PageFactory.initElements(driver, TopNavigationBar.class);
     }
 }
+

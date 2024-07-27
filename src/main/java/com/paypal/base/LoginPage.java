@@ -12,15 +12,23 @@ public class LoginPage extends PayPalBTPage {
     protected WebElement passwordField;
     @FindBy(name = "commit")
     protected WebElement loginButton;
+    @FindBy(id = "acceptAllButton")
+    protected WebElement acceptCookiesButton;
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     public void doLogin(String username, String password) {
-        waitForVisibilityOfElements(Arrays.asList(usernameField, passwordField, loginButton));
+        pauseBrowser(5);
+        waitForVisibilityOfElements(Arrays.asList(acceptCookiesButton, usernameField, passwordField, loginButton));
+        pauseBrowser(5);
+        acceptCookiesButton.click();
+        pauseBrowser(5);
         usernameField.sendKeys(username);
+        pauseBrowser(5);
         passwordField.sendKeys(password);
+        pauseBrowser(5);
         loginButton.click();
     }
 }

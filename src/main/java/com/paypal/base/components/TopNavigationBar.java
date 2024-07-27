@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class TopNavigationBar extends WebPage {
-    @FindBy(className = "unified-panel-header__navigation")
+    @FindBy(css = "div.unified-panel-header__navigation a")
     protected List<WebElement> modules;
 
     public TopNavigationBar(WebDriver driver) {
