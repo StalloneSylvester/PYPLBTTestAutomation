@@ -15,7 +15,7 @@ public class CreateNewTransactionPageTest extends BaseTest {
     }
 
     @Test
-    public void createTransactionNotAllowedWInvalidCvvTest() {
+    public void createTransactionNotAllowedWithInvalidCvvTest() {
         createNewTransactionPage.createTransaction(getTransaction());
         Assert.assertEquals(createNewTransactionPage.getErrorMessage(),
                 "CVV must be 4 digits for American Express and 3 digits for other card types.");
