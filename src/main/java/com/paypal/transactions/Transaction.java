@@ -20,6 +20,11 @@ public class Transaction {
         this.creditCard = creditCard;
     }
 
+    public Transaction(double amount, CreditCard creditCard) {
+        this.amount = amount;
+        this.creditCard = creditCard;
+    }
+
     public double getAmount() {
         return amount;
     }

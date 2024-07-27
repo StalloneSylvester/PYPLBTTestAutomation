@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
 
 public class CreateNewTransactionPage extends PayPalBTPage {
@@ -20,20 +21,26 @@ public class CreateNewTransactionPage extends PayPalBTPage {
     protected WebElement newTransactionButton;
     @FindBy(id = "create_transaction_btn")
     protected WebElement createTransactionButton;
-
+    @FindBy(css = "input#transaction_credit_card_cvv + div.formError")
+    protected WebElement invalidCvvError;
+    protected String errorMessage;
 
     public CreateNewTransactionPage(WebDriver driver) {
         super(driver);
     }
 
     public void createTransaction(Transaction transaction) {
+        navigateToNewTransactionPage();
         waitForVisibilityOfElements(Arrays.asList(amountField, creditCardNumberField,
                 expirationDateField, cvvField, createTransactionButton));
         amountField.sendKeys(String.valueOf(transaction.getAmount()));
-        creditCardNumberField.sendKeys(String.valueOf(transaction.getCreditCard().getCardNumber()));
+        creditCardNumberField.sendKeys(transaction.getCreditCard().getCardNumber());
         expirationDateField.sendKeys(transaction.getCreditCard().getExpirationDate());
         cvvField.sendKeys(String.valueOf(transaction.getCreditCard().getCvv()));
         createTransactionButton.click();
+        pauseBrowser(2);
+        waitForElementToBeVisible(invalidCvvError);
+        errorMessage = invalidCvvError.getText();
     }
 
     private void navigateToNewTransactionPage() {
@@ -42,4 +49,7 @@ public class CreateNewTransactionPage extends PayPalBTPage {
         newTransactionButton.click();
     }
 
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 }

@@ -2,11 +2,11 @@ package com.paypal.transactions;
 
 public class CreditCard {
     protected String cardholderName;
-    protected int cardNumber;
+    protected String cardNumber;
     protected String expirationDate;
     protected int cvv;
 
-    public CreditCard(String cardholderName, int cardNumber, String expirationDate, int cvv) {
+    public CreditCard(String cardholderName, String cardNumber, String expirationDate, int cvv) {
         this.cardholderName = cardholderName;
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
@@ -17,7 +17,7 @@ public class CreditCard {
         return cardholderName;
     }
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
