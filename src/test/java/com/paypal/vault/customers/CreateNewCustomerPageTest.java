@@ -17,6 +17,6 @@ public class CreateNewCustomerPageTest extends BaseTest {
     @Test
     public void createNewCustomerWoDetailsTest() {
         createNewCustomerPage.createNewCustomerWoCustomerDetails();
-        Assert.assertEquals(createNewCustomerPage.getAlertMessage(), "");
+        Assert.assertEquals(createNewCustomerPage.getAlertMessage(), "Customer was successfully created.");
     }
 }

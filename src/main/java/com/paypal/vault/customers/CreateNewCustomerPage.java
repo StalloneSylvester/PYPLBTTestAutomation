@@ -14,8 +14,6 @@ public class CreateNewCustomerPage extends PayPalBTPage {
     protected WebElement createCustomerButton;
     @FindBy(css = "div.alert.success p")
     protected WebElement alertElement;
-    @FindBy(css = "div.detail-card_title > h2")
-    protected WebElement alertDetail;
     @FindBy(css = "a.button-secondary")
     protected WebElement newCustomerButton;
     protected String alertMessage;
@@ -37,7 +35,7 @@ public class CreateNewCustomerPage extends PayPalBTPage {
 
     public void setAlertMessage() {
         waitForElementToBeVisible(alertElement);
-        alertMessage = alertDetail.getText().trim();
+        alertMessage = alertElement.getText();
     }
 
     public String getAlertMessage() {
@@ -46,11 +44,10 @@ public class CreateNewCustomerPage extends PayPalBTPage {
 
     private void navigateToCreateNewCustomerPage() {
         topNavigationBar.goToModule("Vault");
-        pauseBrowser(3);
+        pauseBrowser(2);
         waitForElementToBeClickable(newCustomerButton);
         newCustomerButton.click();
-        pauseBrowser(2
-        );
+        pauseBrowser(2);
     }
 
 }
