@@ -3,6 +3,9 @@ package com.paypal.base;
 import com.github.javafaker.Faker;
 import com.paypal.testutils.PropertiesReader;
 import com.paypal.testutils.WebDriverProvider;
+import com.paypal.transactions.CreateNewTransactionPage;
+import com.paypal.transactions.CreditCard;
+import com.paypal.transactions.Transaction;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
@@ -61,5 +64,11 @@ public class BaseTest extends EnvironmentSetter {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public Transaction getTransaction() {
+        CreditCard card = new CreditCard("John", "376680816376961",
+                "07/2025", 12345);
+        return new Transaction(5000, card);
     }
 }
