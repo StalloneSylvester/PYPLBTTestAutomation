@@ -20,6 +20,7 @@ public class LoginPage extends PayPalBTPage {
     }
 
     public void doLogin(String username, String password) {
+        //Putting pause while logging in to avoid captcha human verification
         pauseBrowser(2);
         waitForVisibilityOfElements(Arrays.asList(acceptCookiesButton, usernameField, passwordField, loginButton));
         pauseBrowser(2);
