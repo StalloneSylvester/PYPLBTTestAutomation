@@ -19,9 +19,14 @@ public class CreateNewUserPage extends PayPalBTPage {
     }
 
     public void createNewUser(String email) {
+        navigateToCreateNewUserPage();
         waitForVisibilityOfElements(Arrays.asList(emailField, crmRoleCheckbox, createUserButton));
         emailField.sendKeys(email);
         crmRoleCheckbox.click();
         createUserButton.click();
+    }
+
+    private void navigateToCreateNewUserPage() {
+
     }
 }

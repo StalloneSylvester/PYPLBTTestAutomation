@@ -71,4 +71,7 @@ public class BaseTest extends EnvironmentSetter {
                 "07/2025", 12345);
         return new Transaction(5000, card);
     }
+    public String getRandomEmail() {
+        return faker.nation().nationality();
+    }
 }
