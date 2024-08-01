@@ -3,7 +3,6 @@ package com.paypal.base;
 import com.github.javafaker.Faker;
 import com.paypal.testutils.PropertiesReader;
 import com.paypal.testutils.WebDriverProvider;
-import com.paypal.transactions.CreateNewTransactionPage;
 import com.paypal.transactions.CreditCard;
 import com.paypal.transactions.Transaction;
 import org.openqa.selenium.TakesScreenshot;
@@ -70,5 +69,9 @@ public class BaseTest extends EnvironmentSetter {
         CreditCard card = new CreditCard("John", "376680816376961",
                 "07/2025", 12345);
         return new Transaction(5000, card);
+    }
+
+    public String getRandomEmail() {
+        return faker.name().firstName() + "@gmail.com";
     }
 }
