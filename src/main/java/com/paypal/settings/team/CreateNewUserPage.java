@@ -25,12 +25,9 @@ public class CreateNewUserPage extends PayPalBTPage {
 
     public void createNewUser(String email) {
         navigateToCreateNewUserPage();
-        //waitForVisibilityOfElements(Arrays.asList(emailField, crmRoleCheckbox, createUserButton));
         waitForElementToBeVisible(emailField);
         emailField.sendKeys(email);
-        pauseBrowser(5);
         javascriptExecutor.executeScript("arguments[0].scrollIntoView();", emailField);
-        pauseBrowser(5);
         javascriptExecutor.executeScript("arguments[0].click()", crmRoleCheckbox);
         waitForElementToBeVisible(createUserButton);
         createUserButton.click();
