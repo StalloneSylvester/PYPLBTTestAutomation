@@ -4,6 +4,8 @@ import com.paypal.base.PayPalBTPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReportsPage extends PayPalBTPage {
     @FindBy(css = "div.navigation-list:nth-child(2) li:nth-child(3) a")
@@ -23,36 +25,26 @@ public class ReportsPage extends PayPalBTPage {
         super(driver);
     }
 
-    public void exportCustomersRecords() {
-        navigateToReportsPage();
-        waitForElementToBeClickableAndClick(exportCustomersRecordLink);
+    public void export(ExportOption exportOption) {
+        waitForElementToBeClickableAndClick(getExportOptionsMap().get(exportOption));
         waitForElementToBeClickableAndClick(filterAndDownloadButton);
         waitForElementToBeClickableAndClick(downloadButton);
     }
 
-    public void exportCustomersRecordsWithPaymentMethods() {
-        navigateToReportsPage();
-        waitForElementToBeClickableAndClick(exportCustomersRecordWithPaymentMethodsLink);
-        waitForElementToBeClickableAndClick(filterAndDownloadButton);
-        waitForElementToBeClickableAndClick(downloadButton);
+    public Map<ExportOption, WebElement> getExportOptionsMap() {
+        Map<ExportOption, WebElement> exportOptionWebElementMap = new HashMap<>();
+        exportOptionWebElementMap.put(ExportOption.CUSTOMER_RECORDS, exportCustomersRecordLink);
+        exportOptionWebElementMap.put(ExportOption.CUSTOMER_RECORDS_WITH_ADDRESSES,
+                exportCustomersRecordWithAddressesLink);
+        exportOptionWebElementMap.put(ExportOption.CUSTOMER_RECORDS_WITH_PAYMENT_METHODS,
+                exportCustomersRecordWithPaymentMethodsLink);
+        exportOptionWebElementMap.put(ExportOption.CUSTOMER_RECORDS_WITH_UPDATED_PAYMENT_METHODS,
+                exportCustomersRecordWithUpdatedPaymentMethodsLink);
+        return exportOptionWebElementMap;
     }
 
-    public void exportCustomersRecordsWithAddresses() {
-        navigateToReportsPage();
-        waitForElementToBeClickableAndClick(exportCustomersRecordWithAddressesLink);
-        waitForElementToBeClickableAndClick(filterAndDownloadButton);
-        waitForElementToBeClickableAndClick(downloadButton);
-    }
-
-    public void exportCustomersRecordsWithUpdatedPaymentMethods() {
-        navigateToReportsPage();
-        waitForElementToBeClickableAndClick(exportCustomersRecordWithUpdatedPaymentMethodsLink);
-        waitForElementToBeClickableAndClick(filterAndDownloadButton);
-        waitForElementToBeClickableAndClick(downloadButton);
-    }
-
-
-    private void navigateToReportsPage() {
-        topNavigationBar.goToModule("Reports");
+    public enum ExportOption {
+        CUSTOMER_RECORDS, CUSTOMER_RECORDS_WITH_PAYMENT_METHODS,
+        CUSTOMER_RECORDS_WITH_ADDRESSES, CUSTOMER_RECORDS_WITH_UPDATED_PAYMENT_METHODS
     }
 }

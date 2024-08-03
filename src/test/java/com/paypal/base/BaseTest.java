@@ -23,7 +23,7 @@ public class BaseTest extends EnvironmentSetter {
     protected String browser;
     protected String browserVersion;
     protected LoginPage loginPage;
-    protected String downloadsDirectoryPath = "C:/Users/Amardeep/Downloads";
+    protected String downloadsDirectoryPath;
 
 
     @BeforeClass
@@ -58,9 +58,13 @@ public class BaseTest extends EnvironmentSetter {
     }
 
     public Transaction getTransaction() {
-        CreditCard card = new CreditCard("John", "376680816376961",
-                "07/2025", 12345);
-        return new Transaction(5000, card);
+        double transactionAmount = Double.parseDouble(propertiesReader.getProperty("transactionAmount"));
+        String cardHolderName = propertiesReader.getProperty("cardHolderName");
+        String cardNumber = propertiesReader.getProperty("testCardNumber");
+        String expirationDate = propertiesReader.getProperty("expirationDate");
+        int cvv = Integer.parseInt(propertiesReader.getProperty("cvv"));
+        CreditCard card = new CreditCard(cardHolderName, cardNumber,expirationDate, cvv);
+        return new Transaction(transactionAmount, card);
     }
 
     public String getRandomEmail() {
@@ -68,8 +72,8 @@ public class BaseTest extends EnvironmentSetter {
     }
 
     public int getNumberOfFilesInDownloads() {
+        downloadsDirectoryPath = propertiesReader.getProperty("downloadsPath");
         driver.get(downloadsDirectoryPath);
         return driver.findElements(By.cssSelector("a.file")).size();
     }
-
 }
