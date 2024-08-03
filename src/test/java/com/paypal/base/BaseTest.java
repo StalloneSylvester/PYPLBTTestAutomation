@@ -5,6 +5,7 @@ import com.paypal.testutils.PropertiesReader;
 import com.paypal.testutils.WebDriverProvider;
 import com.paypal.transactions.CreditCard;
 import com.paypal.transactions.Transaction;
+import org.openqa.selenium.By;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
@@ -22,6 +23,7 @@ public class BaseTest extends EnvironmentSetter {
     protected String browser;
     protected String browserVersion;
     protected LoginPage loginPage;
+    protected String downloadsDirectoryPath = "C:/Users/Amardeep/Downloads";
 
 
     @BeforeClass
@@ -42,7 +44,6 @@ public class BaseTest extends EnvironmentSetter {
         driver.manage().window().maximize();
         driver.get(PAYPAL_BRAINTREE_URL);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
-        pauseBrowser(4);
         propertiesReader = new PropertiesReader();
         username = propertiesReader.getProperty("username");
         password = propertiesReader.getProperty("password");
@@ -52,17 +53,8 @@ public class BaseTest extends EnvironmentSetter {
     }
 
     @AfterClass
-    public void
-    tearDown() {
+    public void tearDown() {
         driver.quit();
-    }
-
-    public void pauseBrowser(int seconds) {
-        try {
-            Thread.sleep(seconds * 1000L);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public Transaction getTransaction() {
@@ -74,4 +66,10 @@ public class BaseTest extends EnvironmentSetter {
     public String getRandomEmail() {
         return faker.name().firstName() + "@gmail.com";
     }
+
+    public int getNumberOfFilesInDownloads() {
+        driver.get(downloadsDirectoryPath);
+        return driver.findElements(By.cssSelector("a.file")).size();
+    }
+
 }

@@ -44,10 +44,6 @@ public class CreateNewCustomerPage extends PayPalBTPage {
 
     private void navigateToCreateNewCustomerPage() {
         topNavigationBar.goToModule("Vault");
-        pauseBrowser(2);
-        waitForElementToBeClickable(newCustomerButton);
-        newCustomerButton.click();
-        pauseBrowser(2);
+        waitForElementToBeClickableAndClick(newCustomerButton);
     }
-
 }
