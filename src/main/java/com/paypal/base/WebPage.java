@@ -10,7 +10,8 @@ import java.time.Duration;
 import java.util.List;
 
 public class WebPage {
-    public static final int TWO_SECONDS = 2;
+    public final int THREE_SECONDS = 3;
+    public final int THIRTY_SECONDS = 30;
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions action;
@@ -23,8 +24,8 @@ public class WebPage {
         javascriptExecutor = (JavascriptExecutor) driver;
     }
 
-    public void waitForElementToBeClickable(WebElement element){
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+    public void waitForElementToBeClickableAndClick(WebElement element){
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
     public void waitForElementToBeVisible(WebElement element){

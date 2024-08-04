@@ -37,8 +37,7 @@ public class CreateNewUserPage extends PayPalBTPage {
 
     private void navigateToCreateNewUserPage() {
         settingsDropdown.selectOption("Team");
-        waitForElementToBeClickable(newUserButton);
-        newUserButton.click();
+        waitForElementToBeClickableAndClick(newUserButton);
     }
 
     public String getAlertMessage() {
