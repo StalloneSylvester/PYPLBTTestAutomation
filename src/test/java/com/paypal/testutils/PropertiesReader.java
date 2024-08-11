@@ -8,7 +8,7 @@ public class PropertiesReader {
     private Properties testRunProperties;
     public PropertiesReader() {
         testRunProperties = new Properties();
-        try (FileInputStream fileInputStream = new FileInputStream("src/test/resources/testrun.properties")){
+        try (FileInputStream fileInputStream = new FileInputStream("testrun.properties")){
             testRunProperties.load(fileInputStream);
         } catch (IOException e) {
             e.printStackTrace();
