@@ -4,7 +4,6 @@ import com.paypal.base.WebPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.List;
 
 public class SettingsDropdown extends WebPage {
@@ -18,13 +17,11 @@ public class SettingsDropdown extends WebPage {
     }
 
     public void selectOption(String ddOption) {
-        waitForElementToBeClickable(settingsDD);
-        settingsDD.click();
+        waitForElementToBeClickableAndClick(settingsDD);
         waitForVisibilityOfElements(dropdownOptions);
         for (WebElement element : dropdownOptions) {
             if (element.getText().equalsIgnoreCase(ddOption)) {
-                waitForElementToBeClickable(element);
-                element.click();
+                waitForElementToBeClickableAndClick(element);
                 break;
             }
         }

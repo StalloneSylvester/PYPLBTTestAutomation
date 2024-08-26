@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.security.SecureRandom;
 import java.util.Arrays;
 
 public class CreateNewTransactionPage extends PayPalBTPage {
@@ -45,8 +44,7 @@ public class CreateNewTransactionPage extends PayPalBTPage {
 
     private void navigateToNewTransactionPage() {
         topNavigationBar.goToModule("Transactions");
-        waitForElementToBeClickable(newTransactionButton);
-        newTransactionButton.click();
+        waitForElementToBeClickableAndClick(newTransactionButton);
     }
 
     public String getErrorMessage() {
